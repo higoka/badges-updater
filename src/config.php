@@ -2,9 +2,11 @@
 
 $config = [
     /**
-     * Where the logs are stored
+     * Badges are downloaded from this locales
      */
-    'logfile' => 'src/logs/updater.log',
+    'locales' => [
+        'de',
+    ],
 
     /**
      * Used for logging the current date and time
@@ -20,11 +22,4 @@ $config = [
      * Path to your external_flash_texts
      */
     'flash_texts' => 'C:/inetpub/wwwroot/swfs/gamedata/external_flash_texts.txt',
-
-    /**
-     * Badges are downloaded from this locales
-     */
-    'locales' => [
-        'de'
-    ],
 ];

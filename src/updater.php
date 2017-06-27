@@ -11,6 +11,10 @@ if (! file_exists($config['flash_texts']) || ! is_writable($config['flash_texts'
     exit(sprintf('The file "%s" does not exist or is not writable', $config['flash_texts']));
 }
 
+if (! is_dir('logs')) {
+    mkdir('logs', 0777, true);
+}
+
 date_default_timezone_set($config['timezone']);
 
 ob_start();
@@ -121,4 +125,4 @@ if ($counter > 0) {
 
 echo sprintf('[%s] Finished, %s', date('d/M/Y:H:i:s'), $message . PHP_EOL);
 
-file_put_contents($config['logfile'], ob_get_clean());
+file_put_contents('logs/update.log', ob_get_clean());
