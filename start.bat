@@ -1,1 +1,1 @@
-php src/updater.php
+php %~dp0/src/updater.php
