@@ -11,6 +11,14 @@ $config = [
      */
     'locales' => [
         'de',
+
+        /**
+         * Add some more if you want :)
+         */
+        // 'com',
+        // 'es',
+        // 'nl',
+        // etc...
     ],
 
     /**
