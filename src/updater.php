@@ -71,6 +71,7 @@ foreach ($config['locales'] as $locale) {
     }
 
     fclose($handle);
+    $buffer = "\n";
 
     foreach ($badges as $code => $values) {
         $url  = sprintf('https://images.habbo.com/c_images/album1584/%s.gif', $code);
