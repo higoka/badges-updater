@@ -2,16 +2,16 @@
 
 $config = [
     /**
+     * Used for logging the current date and time
+     */
+    'timezone' => 'Europe/Berlin',
+
+    /**
      * Badges are downloaded from this locales
      */
     'locales' => [
         'de',
     ],
-
-    /**
-     * Used for logging the current date and time
-     */
-    'timezone' => 'Europe/Berlin',
 
     /**
      * Path to your album1584
