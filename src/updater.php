@@ -32,25 +32,20 @@ $context = stream_context_create([
 $counter = 0;
 
 foreach ($config['locales'] as $locale) {
+    echo "> Processing external_flash_texts ...\n";
+
     $file   = sprintf('https://www.habbo.%s/gamedata/external_flash_texts/1', $locale);
     $result = file_get_contents($file, false, $context);
 
-    echo "> Downloading: $file\n";
-
     if ($result === false) {
-        echo "> Failed!\n";
         continue;
     }
 
     $result = file_put_contents('flash_texts.tmp', $result);
 
     if ($result === false) {
-        echo "> Failed!\n";
         continue;
     }
-
-    echo "> Done!\n";
-    echo "> Processing external_flash_texts ...\n";
 
     $handle = fopen('flash_texts.tmp', 'r');
 
@@ -76,7 +71,6 @@ foreach ($config['locales'] as $locale) {
     }
 
     fclose($handle);
-    echo "> Done!\n";
 
     foreach ($badges as $code => $values) {
         $url  = sprintf('https://images.habbo.com/c_images/album1584/%s.gif', $code);
@@ -86,21 +80,19 @@ foreach ($config['locales'] as $locale) {
             continue;
         }
 
-        echo "> Downloading: $url\n";
-
         $result = file_get_contents($url, false, $context);
 
         if ($result === false) {
-            echo "> Failed!\n";
             continue;
         }
 
         $result = file_put_contents($file, $result);
 
         if ($result === false) {
-            echo "> Failed!\n";
             continue;
         }
+
+        echo "> Downloaded: $url\n";
 
         if (isset($values['name'])) {
             $buffer .= sprintf("badge_name_%s=%s", $code, $values['name']);
@@ -116,7 +108,6 @@ foreach ($config['locales'] as $locale) {
     $result = file_put_contents($config['flash_texts'], $buffer, FILE_APPEND | LOCK_EX);
 
     if ($result === false) {
-        echo "> Failed!\n";
         continue;
     }
 }
