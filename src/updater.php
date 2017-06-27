@@ -122,11 +122,11 @@ foreach ($config['locales'] as $locale) {
 }
 
 if ($counter > 0) {
-    $message = "Total badges added: $counter";
+    $message = "total badges added: $counter";
 } else {
-    $message = "Your badges are up to date!";
+    $message = "your badges are up to date!";
 }
 
-echo sprintf('[%s] Finished: %s', date('d/M/Y:H:i:s'), $message . PHP_EOL);
+echo sprintf('[%s] Finished, %s', date('d/M/Y:H:i:s'), $message . PHP_EOL);
 
 file_put_contents($config['logfile'], ob_get_clean());
