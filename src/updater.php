@@ -32,10 +32,10 @@ $context = stream_context_create([
 $counter = 0;
 
 foreach ($config['locales'] as $locale) {
-    echo "> Downloading: $file\n";
-
     $file   = sprintf('https://www.habbo.%s/gamedata/external_flash_texts/1', $locale);
     $result = file_get_contents($file, false, $context);
+
+    echo "> Downloading: $file\n";
 
     if ($result === false) {
         echo "> Failed!\n";
