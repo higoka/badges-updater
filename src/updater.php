@@ -1,4 +1,6 @@
-<?php require 'config.php';
+<?php
+
+require 'config.php';
 
 ini_set('display_errors', false);
 ini_set('display_startup_errors', false);
@@ -38,7 +40,7 @@ $counter = 0;
 foreach ($config['locales'] as $locale) {
     echo "> Processing external_flash_texts ...\n";
 
-    $file   = sprintf('https://www.habbo.%s/gamedata/external_flash_texts/1', $locale);
+    $file = sprintf('https://www.habbo.%s/gamedata/external_flash_texts/1', $locale);
     $result = file_get_contents($file, false, $context);
 
     if ($result === false) {
@@ -78,7 +80,7 @@ foreach ($config['locales'] as $locale) {
     $buffer = "\n";
 
     foreach ($badges as $code => $values) {
-        $url  = sprintf('https://images.habbo.com/c_images/album1584/%s.gif', $code);
+        $url = sprintf('https://images.habbo.com/c_images/album1584/%s.gif', $code);
         $file = sprintf('%s/%s.gif', $config['album1584'], $code);
 
         if (file_exists($file)) {
@@ -100,11 +102,11 @@ foreach ($config['locales'] as $locale) {
         echo "> Downloaded: $url\n";
 
         if (isset($values['name'])) {
-            $buffer .= sprintf("badge_name_%s=%s", $code, $values['name']);
+            $buffer .= sprintf('badge_name_%s=%s', $code, $values['name']);
         }
 
         if (isset($values['desc'])) {
-            $buffer .= sprintf("badge_desc_%s=%s", $code, $values['desc']);
+            $buffer .= sprintf('badge_desc_%s=%s', $code, $values['desc']);
         }
 
         $counter++;
@@ -120,9 +122,9 @@ foreach ($config['locales'] as $locale) {
 if ($counter > 0) {
     $message = "total badges added: $counter";
 } else {
-    $message = "your badges are up to date!";
+    $message = 'your badges are up to date!';
 }
 
-echo sprintf('[%s] Finished, %s', date('d/M/Y:H:i:s'), $message . PHP_EOL);
+echo sprintf('[%s] Finished, %s', date('d/M/Y:H:i:s'), $message.PHP_EOL);
 
 file_put_contents('src/logs/update.log', ob_get_clean());
